@@ -1,0 +1,38 @@
+<launch>
+  -detector.launch rect0_size_x:=0.02 rect0_size_y:=0.02 grid0_size_x:=7 grid0_size_y:=4 translation0:="0 0 0" image:=image_raw  group:=/camera/rgb frame_id:=camera_rgb_optical_frame
+
+  <arg name="single" default="1" />
+  <arg name="display" default="1" />
+  <arg name="rect0_size_x" default="0.020" />
+  <arg name="rect0_size_y" default="0.020" />
+  <arg name="grid0_size_x" default="7" />
+  <arg name="grid0_size_y" default="4" />
+  <arg name="type0" default="test_object" />
+  <arg name="translation0" default="0.0 0.0 0.0" />
+  <!-- (array-entity (send (make-coords :rpy (float-vector 0 0 pi)) :worldrot)) -->
+  <arg name="rotation0" default="1.0 0.0 0.0 0.0 -1.0 -6.278329e-07 0.0 6.278329e-07 -1.0" />
+  <arg name="frame_id" default="camera_rgb_optical_frame" />
+  <arg name="image" default="image_raw" />
+  <arg name="group" default="/camera/rgb" />
+  <group ns="$(arg group)">
+    <param name="single" value="$(arg single)" />
+    <param name="display" value="$(arg display)" />
+    <param name="rect0_size_x" value="$(arg rect0_size_x)" />
+    <param name="rect0_size_y" value="$(arg rect0_size_y)" />
+    <param name="grid0_size_x" value="$(arg grid0_size_x)" />
+    <param name="grid0_size_y" value="$(arg grid0_size_y)" />
+    <param name="type0" value="$(arg type0)" />
+    <param name="translation0" value="$(arg translation0)" />
+    <param name="rotation0" value="$(arg rotation0)" />
+    <param name="frame_id" value="$(arg frame_id)" />
+    <node name="checkerboard_detector" pkg="checkerboard_detector"
+          type="checkerboard_detector">
+      <remap from="image" to="$(arg image)" />
+    </node>
+    <node name="objectdetection_tf_publisher"
+          pkg="checkerboard_detector"
+          type="objectdetection_tf_publisher.py" >
+      <param name="use_simple_tf" value="true" />
+    </node>
+  </group>
+</launch>
