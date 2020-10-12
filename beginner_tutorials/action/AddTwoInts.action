@@ -1,0 +1,9 @@
+# Define the goal
+int64 a
+int64 b
+---
+# Define the result
+int64 sum
+---
+# Define a feedback message
+string feedback
