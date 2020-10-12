@@ -1,0 +1,13 @@
+<launch>
+  <arg name="use_python_talker" default="true" doc="if true (defaule) use python talker, otherwise use cpp talker " />
+
+  <!-- rosrun beginner_tutorials talker -->
+  <node pkg="beginner_tutorials" type="talker.py" name="python_talker" output="screen"
+        if="$(arg use_python_talker)" launch-prefix="xterm -e"/>
+  <node pkg="beginner_tutorials" type="talker" name="cpp_talker" output="screen"
+        unless="$(arg use_python_talker)" launch-prefix="xterm -e"/>
+
+  <!-- rosrun beginner_tutorials listener -->
+  <node pkg="beginner_tutorials" type="listener" name="cpp_listener" output="screen" launch-prefix="gnome-terminal -e"/>
+  <node pkg="beginner_tutorials" type="listener.py" name="python_listener" output="screen" launch-prefix="gnome-terminal --"/>
+</launch>

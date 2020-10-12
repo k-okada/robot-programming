@@ -1,0 +1,12 @@
+<launch>
+  <!-- rosrun beginner_tutorials add_two_ints_server -->
+  <node pkg="beginner_tutorials" type="add_two_ints_action_server"
+        name="add_two_ints_server" output="screen"
+        launch-prefix="xterm -e"/>
+
+  <!-- rosrun beginner_tutorials add_two_ints_client -->
+  <node pkg="beginner_tutorials" type="add_two_ints_action_client"
+        name="add_two_ints_client_cpp" output="screen" />
+  <node pkg="beginner_tutorials" type="add_two_ints_action_client.py"
+        name="add_two_ints_client_python" output="screen" />
+</launch>
