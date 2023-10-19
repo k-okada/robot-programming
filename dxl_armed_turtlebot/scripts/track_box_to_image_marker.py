@@ -7,7 +7,7 @@ from image_view2.msg import ImageMarker2
 from geometry_msgs.msg import Point
 
 def cb(msg):
-    print msg.rect
+    print(msg.rect)
     marker = ImageMarker2()
     ## http://docs.ros.org/melodic/api/image_view2/html/msg/ImageMarker2.html 
     ## または，rosmsg show -r image_view2/ImageMarker2 参照．
